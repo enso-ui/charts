@@ -1,3 +1,4 @@
 import Chart from './src/components/Chart.vue';
+import colors from './src/colors/colors';
 
-export default Chart;
+export { Chart, colors };
