@@ -38,7 +38,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {
     Card, CardHeader, CardContent, CardControl, CardRefresh, CardCollapse,
-} from '@enso-ui/bulma';
+} from '@enso-ui/chart/bulma';
 
 import Chart from '../components/Chart.vue';
 
