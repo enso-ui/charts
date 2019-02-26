@@ -1,3 +1,3 @@
-import colors from '../src/colors/colors';
+import colors from '../src/colors';
 
 export default colors;
