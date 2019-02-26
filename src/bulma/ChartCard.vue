@@ -40,7 +40,7 @@ import {
     Card, CardHeader, CardContent, CardControl, CardRefresh, CardCollapse,
 } from '@enso-ui/bulma';
 
-import Chart from './Chart.vue';
+import Chart from '../components/Chart.vue';
 
 library.add(
     faChartBar, faChartPie, faChartLine, faChartArea, faCircleNotch, faCircle, faDownload,
