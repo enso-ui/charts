@@ -7,6 +7,8 @@ const types = [
 ];
 
 export default {
+    name: 'Chart',
+
     props: {
         data: {
             type: Object,

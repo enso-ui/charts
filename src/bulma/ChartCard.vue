@@ -57,22 +57,30 @@ const icons = {
 };
 
 export default {
+    name: 'ChartCard',
+
     components: {
         Card, CardHeader, CardRefresh, CardCollapse, CardControl, Chart, CardContent,
     },
 
     props: {
-        source: {
-            type: String,
-            required: true,
+        errorHandler: {
+            type: Function,
+            default: (error) => {
+                throw error;
+            },
+        },
+        i18n: {
+            type: Function,
+            default: v => v,
         },
         params: {
             type: Object,
             default: null,
         },
-        i18n: {
-            type: Function,
-            default: v => v,
+        source: {
+            type: String,
+            required: true,
         },
     },
 
@@ -139,7 +147,7 @@ export default {
                     this.loading = false;
                 }).catch((error) => {
                     this.loading = false;
-                    this.handleError(error);
+                    this.errorHandler(error);
                 });
         },
         download() {
