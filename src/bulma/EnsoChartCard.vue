@@ -9,7 +9,7 @@
 import ChartCard from './ChartCard.vue';
 
 export default {
-    name: 'ChartCard',
+    name: 'EnsoChartCard',
 
     components: { ChartCard },
 };
