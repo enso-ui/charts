@@ -11,8 +11,8 @@ import ChartCard from './ChartCard.vue';
 export default {
     name: 'EnsoChartCard',
 
-    inject: ['errorHandler', 'i18n'],
-
     components: { ChartCard },
+
+    inject: ['errorHandler', 'i18n'],
 };
 </script>

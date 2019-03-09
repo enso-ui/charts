@@ -609,6 +609,45 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@enso-ui/card@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@enso-ui/card/-/card-1.0.11.tgz#224438ef8679ad9b0809596caf59fda5b01c6149"
+  integrity sha512-L5CMyLOVwTQQMN0itmkZYof1c1ATmmpiOIRDAGcSKWbMCZinfAItHaRweXuo6yLnc3K6DcfP54RkioUWse7pwQ==
+  dependencies:
+    "@enso-ui/dropdown-indicator" "^1.0.0"
+    "@enso-ui/loader" "^1.0.0"
+    "@fortawesome/fontawesome-svg-core" "^1.2.2"
+    "@fortawesome/free-solid-svg-icons" "^5.2.0"
+    bulma "^0.7.2"
+    vue "^2.5.16"
+
+"@enso-ui/dropdown-indicator@^1.0.0":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@enso-ui/dropdown-indicator/-/dropdown-indicator-1.0.4.tgz#ba4a0539cbea6147d869291a28db35cc4c22a8b5"
+  integrity sha512-E3IA7/Kz17pJxFmunFPtLtn2XQCPcVMzazm2er7O1VEHsagC949LpBQgSCDrlEmzoBm4rQs/1KrJTR/QOAy1yA==
+  dependencies:
+    "@fortawesome/fontawesome-svg-core" "^1.2.2"
+    "@fortawesome/free-solid-svg-icons" "^5.2.0"
+    "@fortawesome/vue-fontawesome" "^0.1.1"
+    vue "^2.5.16"
+
+"@enso-ui/loader@^1.0.0":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@enso-ui/loader/-/loader-1.0.8.tgz#9e7bd52b039bc07069b56e0db2be427547282d6e"
+  integrity sha512-vmT0rHxFLrAtpFVf6HfMYXwA3G4hUSy5DGx1NDkAtm1bLfVPUbAmUFqBajh503ibTlWQkM6Ktc9b7ly1KEruyA==
+  dependencies:
+    "@enso-ui/transitions" "^1.0.0"
+    bulma "^0.7.2"
+    vue "^2.5.16"
+
+"@enso-ui/transitions@^1.0.0":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@enso-ui/transitions/-/transitions-1.0.10.tgz#4743e97863a48a0d2001790793daeb0edc7faf98"
+  integrity sha512-GUzdcLeUN08bEBrwTcUonv2PyF9RwUYmmTrbLNG8K0Os6kud8NrJBMbKMLFEQqtPy6Yk0qPAK1xB8WRyL7aThw==
+  dependencies:
+    animate.css "^3.6.1"
+    vue "^2.5.16"
+
 "@fortawesome/fontawesome-common-types@^0.2.15":
   version "0.2.15"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.15.tgz#16af950653083d1e3064061de9f8e5e3b579f688"
@@ -738,6 +777,11 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
+
+animate.css@^3.6.1:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.0.tgz#5de25d1ee5fba11ba6a1e2c4fa568f512eb7d4da"
+  integrity sha512-u3iMXDJr0cxMdQocIciDiou9Au4L5f9uT+/jCtprw3s1j3HcfCuI+khF+90Ps2KdsEhM2soF7SXB4WUvI3HlXg==
 
 ansi-escapes@^3.2.0:
   version "3.2.0"
