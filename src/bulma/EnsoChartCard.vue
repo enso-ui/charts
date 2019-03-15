@@ -14,5 +14,18 @@ export default {
     components: { ChartCard },
 
     inject: ['errorHandler', 'i18n'],
+
+    methods: {
+        fetch() {
+            if (this.chart) {
+                this.chart.fetch();
+            }
+        },
+        resize() {
+            if (!this.chart) {
+                this.chart.resize();
+            }
+        },
+    },
 };
 </script>

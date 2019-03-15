@@ -99,6 +99,13 @@ export default {
             this.chart.data.labels = this.data.labels;
             this.chart.update();
         },
+        resize() {
+            if (!this.chart) {
+                return;
+            }
+
+            this.chart.resize();
+        },
         updateDatasets() {
             if (this.structureChanged()) {
                 this.$set(this.chart.data, 'datasets', this.data.datasets);

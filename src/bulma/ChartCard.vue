@@ -150,6 +150,13 @@ export default {
                     this.errorHandler(error);
                 });
         },
+        resize() {
+            if (!this.chart) {
+                return;
+            }
+
+            this.chart.resize();
+        },
         download() {
             this.$refs.chart.$el
                 .toBlob(blob => saveAs(blob, `${this.config.title}.png`));
