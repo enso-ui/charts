@@ -19,7 +19,7 @@
                 <card-collapse/>
             </template>
         </card-header>
-        <card-content class="is-paddingless">
+        <card-content>
             <chart class="has-padding-medium"
                 :data="data"
                 :options="config.options"
