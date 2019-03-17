@@ -1,5 +1,7 @@
 <template>
-    <card :loading="loading"
+    <card collapsible
+        :collapsed="collapsed"
+        :loading="loading"
         v-if="config">
         <card-header class="has-background-light">
             <template v-slot:title>
@@ -19,9 +21,8 @@
                 <card-collapse/>
             </template>
         </card-header>
-        <card-content>
-            <chart class="has-padding-medium"
-                :data="data"
+        <card-content class="has-padding-medium">
+            <chart :data="data"
                 :options="config.options"
                 :type="config.type"
                 v-bind="$attrs"
@@ -64,6 +65,10 @@ export default {
     },
 
     props: {
+        collapsed: {
+            type: Boolean,
+            default: false,
+        },
         errorHandler: {
             type: Function,
             default: (error) => {
