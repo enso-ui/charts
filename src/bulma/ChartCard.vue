@@ -150,6 +150,7 @@ export default {
                 .then(({ data }) => {
                     this.config = data;
                     this.loading = false;
+                    this.$emit('fetched');
                 }).catch((error) => {
                     this.loading = false;
                     this.errorHandler(error);
