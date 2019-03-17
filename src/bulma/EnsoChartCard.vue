@@ -2,7 +2,8 @@
     <chart-card :i18n="i18n"
         :error-handler="errorHandler"
         v-bind="$attrs"
-        v-on="$listeners"/>
+        v-on="$listeners"
+        @fetched="ready = true"/>
 </template>
 
 <script>
@@ -14,6 +15,16 @@ export default {
     components: { ChartCard },
 
     inject: ['errorHandler', 'i18n'],
+
+    data: () => ({
+        ready: false,
+    }),
+
+    computed: {
+        config() {
+            return this.ready && this.$refs.chart.config;
+        },
+    },
 
     methods: {
         fetch() {
