@@ -3,7 +3,8 @@
         :error-handler="errorHandler"
         v-bind="$attrs"
         v-on="$listeners"
-        @fetched="ready = true"/>
+        @fetched="ready = true"
+        ref="chart"/>
 </template>
 
 <script>
