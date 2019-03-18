@@ -4,7 +4,11 @@
         v-bind="$attrs"
         v-on="$listeners"
         @fetched="ready = true"
-        ref="chart"/>
+        ref="chart">
+        <template v-slot:default>
+            <slot/>
+        </template>
+    </chart-card>
 </template>
 
 <script>

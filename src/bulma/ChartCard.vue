@@ -22,6 +22,7 @@
             </template>
         </card-header>
         <card-content class="has-padding-medium">
+            <slot/>
             <chart :data="data"
                 :options="config.options"
                 :type="config.type"
