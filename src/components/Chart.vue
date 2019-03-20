@@ -3,7 +3,7 @@ import Chart from 'chart.js';
 import 'chartjs-plugin-datalabels';
 
 const types = [
-    'line', 'bar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
+    'line', 'bar', 'horizontalBar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
 ];
 
 export default {

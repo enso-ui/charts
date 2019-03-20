@@ -50,6 +50,7 @@ library.add(
 
 const icons = {
     bar: faChartBar,
+    horizontalBar: faChartBar,
     pie: faChartPie,
     line: faChartLine,
     radar: faChartArea,
