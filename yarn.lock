@@ -635,41 +635,41 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@enso-ui/card@^1.0.11":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@enso-ui/card/-/card-1.0.21.tgz#f7aaea434e0be1a3fe3069b738ac142bf1e0860d"
-  integrity sha512-pBCfu8VaPNBwXWwXo5g8pTTz21qcOBQ5wmSfWVF5kkwym1iUobFSqe3L2ZHitPXu1icDtt6WTNAzTOBUMzVwxQ==
+"@enso-ui/card@1.0.x":
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/@enso-ui/card/-/card-1.0.24.tgz#b2cdccb12f3527a18ac4070c6aeff1c22b9ebde3"
+  integrity sha512-+Gl7z/dgSqBnVcvHU6IEgdkbzNkxlnGhPPxGFT5XlkqhR5qg0bSRNACpLNGwRyRP0Mlm4VMMEgEHsgvD/GfSSw==
   dependencies:
-    "@enso-ui/dropdown-indicator" "^1.0.0"
-    "@enso-ui/loader" "^1.0.0"
+    "@enso-ui/dropdown-indicator" "1.0.x"
+    "@enso-ui/loader" "1.0.x"
     "@fortawesome/fontawesome-svg-core" "^1.2.2"
     "@fortawesome/free-solid-svg-icons" "^5.2.0"
-    bulma "^0.7.2"
+    bulma "^0.8.0"
     vue "^2.5.16"
 
-"@enso-ui/dropdown-indicator@^1.0.0":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@enso-ui/dropdown-indicator/-/dropdown-indicator-1.0.5.tgz#db840d8e8cc34ff143a05d5db049ee8c9989baf7"
-  integrity sha512-OMh0PBufYZxR9nrFQ5nxKdy4rPg1tMzxRX/LgqZ9M2qBDuG/BLbs2nIFDjnLmMKxnd6bcO5IXnW/zfMZJsWqMA==
+"@enso-ui/dropdown-indicator@1.0.x":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@enso-ui/dropdown-indicator/-/dropdown-indicator-1.0.6.tgz#02f14de3b138c3d3bec2e44c4565e2b48fb345a7"
+  integrity sha512-Oo/vP1dSTSW57l6pREWD8+ziivE/Hm8To5tJfpTUZu38CKGeLqDtu5lTsY/Hd73CsAW6ZNGa5JKAZwvtRb6iYg==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.2"
     "@fortawesome/free-solid-svg-icons" "^5.2.0"
     "@fortawesome/vue-fontawesome" "^0.1.1"
     vue "^2.5.16"
 
-"@enso-ui/loader@^1.0.0":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@enso-ui/loader/-/loader-1.0.8.tgz#9e7bd52b039bc07069b56e0db2be427547282d6e"
-  integrity sha512-vmT0rHxFLrAtpFVf6HfMYXwA3G4hUSy5DGx1NDkAtm1bLfVPUbAmUFqBajh503ibTlWQkM6Ktc9b7ly1KEruyA==
+"@enso-ui/loader@1.0.x":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@enso-ui/loader/-/loader-1.0.10.tgz#1f866f98f1f8407218baa83dd630d6af9398216c"
+  integrity sha512-yQrwU9d62fTvIIH2but9Y5q9s9utUF2BkrV3f1PWTmxsRxjbnV0Zh26SqoV+y4ThdGi+XcoiQ5qvPfX6Dri94A==
   dependencies:
-    "@enso-ui/transitions" "^1.0.0"
+    "@enso-ui/transitions" "1.0.x"
     bulma "^0.7.2"
     vue "^2.5.16"
 
-"@enso-ui/transitions@^1.0.0":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@enso-ui/transitions/-/transitions-1.0.12.tgz#4e17ef78e2998c75851ea15890e3a845639f7796"
-  integrity sha512-0TogKEpUV99ogW0UjWZu9OxY01hjw5IT5V92wX9Kmq35TcLXV6RZagSeMqQfdnNGWLnLFW2ixjsr4GHnTFfAEQ==
+"@enso-ui/transitions@1.0.x":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@enso-ui/transitions/-/transitions-1.0.13.tgz#b1d0ab82eb9d40552028689dd7d547cae672f20d"
+  integrity sha512-tjY2+HlTKHC9MV+WJCTMk3rMzcqM6zwh9DG+uz1qpCABBNGDxfKfCuMRgNSqnTzg2HS48HIHWUZ6s8JJR12xcw==
   dependencies:
     animate.css "^3.6.1"
     vue "^2.5.16"
@@ -1316,6 +1316,11 @@ bulma@^0.7.2:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
   integrity sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
+
+bulma@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.8.0.tgz#ac1606431703a4761b18a4a2d5cc1fa864a2aece"
+  integrity sha512-nhf3rGyiZh/VM7FrSJ/5KeLlfaFkXz0nYcXriynfPH4vVpnxnqyEwaNGdNCVzHyyCA3cHgkQAMpdF/SFbFGZfA==
 
 bytes@3.0.0:
   version "3.0.0"
@@ -4408,9 +4413,9 @@ lodash.uniq@^4.5.0:
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
 lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@~4.17.10:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 loglevel@^1.4.1:
   version "1.6.2"
