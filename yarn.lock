@@ -635,41 +635,41 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@enso-ui/card@^1.0.11":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@enso-ui/card/-/card-1.0.21.tgz#f7aaea434e0be1a3fe3069b738ac142bf1e0860d"
-  integrity sha512-pBCfu8VaPNBwXWwXo5g8pTTz21qcOBQ5wmSfWVF5kkwym1iUobFSqe3L2ZHitPXu1icDtt6WTNAzTOBUMzVwxQ==
+"@enso-ui/card@1.0.x":
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/@enso-ui/card/-/card-1.0.24.tgz#b2cdccb12f3527a18ac4070c6aeff1c22b9ebde3"
+  integrity sha512-+Gl7z/dgSqBnVcvHU6IEgdkbzNkxlnGhPPxGFT5XlkqhR5qg0bSRNACpLNGwRyRP0Mlm4VMMEgEHsgvD/GfSSw==
   dependencies:
-    "@enso-ui/dropdown-indicator" "^1.0.0"
-    "@enso-ui/loader" "^1.0.0"
+    "@enso-ui/dropdown-indicator" "1.0.x"
+    "@enso-ui/loader" "1.0.x"
     "@fortawesome/fontawesome-svg-core" "^1.2.2"
     "@fortawesome/free-solid-svg-icons" "^5.2.0"
-    bulma "^0.7.2"
+    bulma "^0.8.0"
     vue "^2.5.16"
 
-"@enso-ui/dropdown-indicator@^1.0.0":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@enso-ui/dropdown-indicator/-/dropdown-indicator-1.0.5.tgz#db840d8e8cc34ff143a05d5db049ee8c9989baf7"
-  integrity sha512-OMh0PBufYZxR9nrFQ5nxKdy4rPg1tMzxRX/LgqZ9M2qBDuG/BLbs2nIFDjnLmMKxnd6bcO5IXnW/zfMZJsWqMA==
+"@enso-ui/dropdown-indicator@1.0.x":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@enso-ui/dropdown-indicator/-/dropdown-indicator-1.0.6.tgz#02f14de3b138c3d3bec2e44c4565e2b48fb345a7"
+  integrity sha512-Oo/vP1dSTSW57l6pREWD8+ziivE/Hm8To5tJfpTUZu38CKGeLqDtu5lTsY/Hd73CsAW6ZNGa5JKAZwvtRb6iYg==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.2"
     "@fortawesome/free-solid-svg-icons" "^5.2.0"
     "@fortawesome/vue-fontawesome" "^0.1.1"
     vue "^2.5.16"
 
-"@enso-ui/loader@^1.0.0":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@enso-ui/loader/-/loader-1.0.8.tgz#9e7bd52b039bc07069b56e0db2be427547282d6e"
-  integrity sha512-vmT0rHxFLrAtpFVf6HfMYXwA3G4hUSy5DGx1NDkAtm1bLfVPUbAmUFqBajh503ibTlWQkM6Ktc9b7ly1KEruyA==
+"@enso-ui/loader@1.0.x":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@enso-ui/loader/-/loader-1.0.10.tgz#1f866f98f1f8407218baa83dd630d6af9398216c"
+  integrity sha512-yQrwU9d62fTvIIH2but9Y5q9s9utUF2BkrV3f1PWTmxsRxjbnV0Zh26SqoV+y4ThdGi+XcoiQ5qvPfX6Dri94A==
   dependencies:
-    "@enso-ui/transitions" "^1.0.0"
+    "@enso-ui/transitions" "1.0.x"
     bulma "^0.7.2"
     vue "^2.5.16"
 
-"@enso-ui/transitions@^1.0.0":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@enso-ui/transitions/-/transitions-1.0.12.tgz#4e17ef78e2998c75851ea15890e3a845639f7796"
-  integrity sha512-0TogKEpUV99ogW0UjWZu9OxY01hjw5IT5V92wX9Kmq35TcLXV6RZagSeMqQfdnNGWLnLFW2ixjsr4GHnTFfAEQ==
+"@enso-ui/transitions@1.0.x":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@enso-ui/transitions/-/transitions-1.0.13.tgz#b1d0ab82eb9d40552028689dd7d547cae672f20d"
+  integrity sha512-tjY2+HlTKHC9MV+WJCTMk3rMzcqM6zwh9DG+uz1qpCABBNGDxfKfCuMRgNSqnTzg2HS48HIHWUZ6s8JJR12xcw==
   dependencies:
     animate.css "^3.6.1"
     vue "^2.5.16"
@@ -1316,6 +1316,11 @@ bulma@^0.7.2:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
   integrity sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
+
+bulma@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.8.0.tgz#ac1606431703a4761b18a4a2d5cc1fa864a2aece"
+  integrity sha512-nhf3rGyiZh/VM7FrSJ/5KeLlfaFkXz0nYcXriynfPH4vVpnxnqyEwaNGdNCVzHyyCA3cHgkQAMpdF/SFbFGZfA==
 
 bytes@3.0.0:
   version "3.0.0"
@@ -2607,14 +2612,16 @@ eslint-scope@^4.0.0, eslint-scope@^4.0.3:
     estraverse "^4.1.1"
 
 eslint-utils@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-utils/-/eslint-utils-1.3.1.tgz#9a851ba89ee7c460346f97cf8939c7298827e512"
-  integrity sha512-Z7YjnIldX+2XMcjr7ZkgEsOj/bREONV60qYeB/bjMAqqqZ4zxKyWX+BOUkdmRmA9riiIPVvo5x86m5elviOk0Q==
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/eslint-utils/-/eslint-utils-1.4.3.tgz#74fec7c54d0776b6f67e0251040b5806564e981f"
+  integrity sha512-fbBN5W2xdY45KulGXmLHZ3c3FHfVYmKg0IrAKGOkT/464PQsx2UeIzfz1RmEci+KLm1bBaAzZAh8+/E+XAeZ8Q==
+  dependencies:
+    eslint-visitor-keys "^1.1.0"
 
-eslint-visitor-keys@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
-  integrity sha512-qzm/XxIbxm/FHyH341ZrbnMUpe+5Bocte9xkmFMzPMjRaZMcXww+MpBptFvtU+79L362nqiLhekCxCxDPaUMBQ==
+eslint-visitor-keys@^1.0.0, eslint-visitor-keys@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.1.0.tgz#e2a82cea84ff246ad6fb57f9bde5b46621459ec2"
+  integrity sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
 
 eslint@^5.0.1:
   version "5.16.0"
