@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { ProgressCircle } from '@enso-ui/bulma';
+import ProgressCircle from '@enso-ui/progress-circle';
 import { clickOutside } from '@enso-ui/directives';
 
 export default {
