@@ -77,6 +77,7 @@ export default {
                 .formatter = this.formatter;
 
             this.options.scales.yAxes[0].ticks = {
+                min: 0,
                 callback: v => this.formatter(v),
             };
         },
