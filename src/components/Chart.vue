@@ -16,7 +16,7 @@ export default {
         },
         formatter: {
             type: Function,
-            default: null,
+            default: v => v,
         },
         options: {
             type: Object,
@@ -73,14 +73,12 @@ export default {
 
     methods: {
         init() {
-            if (this.formatter) {
-                Chart.defaults.global.plugins.datalabels
-                    .formatter = this.formatter;
-            }
+            Chart.defaults.global.plugins.datalabels
+                .formatter = this.formatter;
 
-            Chart.scaleService.updateScaleDefaults(
-                'linear', { ticks: { min: 0 } },
-            );
+            this.options.scales.yAxes[0].ticks = {
+                callback: v => this.formatter(v),
+            };
         },
         mount() {
             this.chart = new Chart(this.$el, {
