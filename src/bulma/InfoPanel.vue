@@ -71,10 +71,10 @@ export default {
             };
         },
         sum() {
-            return this.dataset.data.reduce((sum, value) => (sum += 1 * value), 0);
+            return this.dataset.data && this.dataset.data.reduce((sum, value) => (sum += 1 * value), 0);
         },
         progress() {
-            const progress = this.total
+            const progress = this.dataset.data && this.total
                 ? this.dataset.data
                     .reduce((sum, value) => (sum += 1 * value)) / this.total * 100
                 : 0;
