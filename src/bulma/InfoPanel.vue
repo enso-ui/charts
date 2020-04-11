@@ -22,7 +22,7 @@
                         v-if="svg"/>
                     <p class="title is-5 has-padding-large"
                         v-else>
-                        {{ sum }} / {{ total }}
+                        {{ sum | shortNumber }} / {{ total | shortNumber }}
                     </p>
                 </div>
             </div>
@@ -41,11 +41,14 @@
 <script>
 import ProgressCircle from '@enso-ui/progress-circle';
 import { clickOutside } from '@enso-ui/directives';
+import { shortNumber } from '@enso-ui/mixins';
 
 export default {
     name: 'InfoPanel',
 
     directives: { clickOutside },
+
+    filters: { shortNumber },
 
     components: { ProgressCircle },
 
