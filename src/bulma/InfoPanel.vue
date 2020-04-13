@@ -57,6 +57,10 @@ export default {
             type: Object,
             required: true,
         },
+        precision: {
+            type: Number,
+            default: 2,
+        },
         total: {
             type: Number,
             default: null,
@@ -73,18 +77,23 @@ export default {
                 borderTop: `2px solid ${this.dataset.borderColor}`,
             };
         },
+        multiplier() {
+            return 10 ** this.precision;
+        },
         sum() {
-            return this.dataset.data && this.dataset.data.reduce((sum, value) => (sum += 1 * value), 0);
+            return this.ready && this.dataset.data
+                .reduce((sum, value) => (sum += this.multiplier * value), 0)
+                / this.multiplier;
         },
         progress() {
-            const progress = this.dataset.data && this.total
-                ? this.dataset.data
-                    .reduce((sum, value) => (sum += 1 * value)) / this.total * 100
+            const progress = this.ready && this.total
+                ? this.sum * this.multiplier / this.total * this.multiplier * 100
                 : 0;
 
-            return progress < 100
-                ? progress
-                : 100;
+            return progress < 100 ? progress : 100;
+        },
+        ready() {
+            return !!this.dataset.data;
         },
     },
 };
