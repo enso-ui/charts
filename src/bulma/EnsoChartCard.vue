@@ -5,6 +5,9 @@
         v-on="$listeners"
         @fetched="ready = true"
         ref="chart">
+        <template v-slot:controls>
+            <slot name="controls"/>
+        </template>
         <template v-slot:default="props">
             <slot v-bind="props"/>
         </template>
