@@ -22,7 +22,12 @@
                         v-if="svg"/>
                     <p class="title is-5 has-padding-large"
                         v-else>
-                        {{ sum | shortNumber }} / {{ total | shortNumber }}
+                        <span v-if="shortNumbers">
+                            {{ sum | shortNumber }} / {{ total | shortNumber }}
+                        </span>
+                        <span v-else>
+                            {{ sum }} / {{ total }}
+                        </span>
                     </p>
                 </div>
             </div>
@@ -30,7 +35,12 @@
                 v-else>
                 <div class="level-item">
                     <p class="title is-5 has-padding-large">
-                        {{ sum | shortNumber }}
+                        <span v-if="shortNumbers">
+                            {{ sum | shortNumber }}
+                        </span>
+                        <span v-else>
+                            {{ sum }}
+                        </span>
                     </p>
                 </div>
             </div>
@@ -56,6 +66,10 @@ export default {
         dataset: {
             type: Object,
             required: true,
+        },
+        shortNumbers: {
+            type: Boolean,
+            default: false,
         },
         precision: {
             type: Number,
