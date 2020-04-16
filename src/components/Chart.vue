@@ -35,7 +35,7 @@ export default {
 
     computed: {
         chartOptions() {
-            return {
+            const options = {
                 tooltips: false,
                 plugins: {
                     datalabels: {
@@ -55,6 +55,20 @@ export default {
                 },
                 ...this.options,
             };
+
+            if (this.type !== 'bubble') {
+                options.formatter = (value, context) => this
+                    .formatter(context.chart.data.labels[context.dataIndex]);
+            }
+
+            if (this.options.scales) {
+                options.scales.yAxes[0].ticks = {
+                    min: 0,
+                    callback: v => this.formatter(v),
+                };
+            }
+
+            return options;
         },
     },
 
@@ -63,7 +77,6 @@ export default {
     },
 
     mounted() {
-        this.init();
         this.mount();
     },
 
@@ -72,15 +85,6 @@ export default {
     },
 
     methods: {
-        init() {
-            Chart.defaults.global.plugins.datalabels
-                .formatter = this.formatter;
-
-            this.options.scales.yAxes[0].ticks = {
-                min: 0,
-                callback: v => this.formatter(v),
-            };
-        },
         mount() {
             this.chart = new Chart(this.$el, {
                 type: this.type,

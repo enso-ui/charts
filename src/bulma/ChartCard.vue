@@ -74,7 +74,7 @@ export default {
         },
         errorHandler: {
             type: Function,
-            default: (error) => {
+            default: error => {
                 throw error;
             },
         },
@@ -109,7 +109,7 @@ export default {
             switch (this.config.type) {
             case 'bubble':
                 return {
-                    datasets: this.config.data.datasets.map((dataset) => {
+                    datasets: this.config.data.datasets.map(dataset => {
                         dataset.label = this.i18n(dataset.label);
                         return dataset;
                     }),
@@ -117,7 +117,7 @@ export default {
             case 'line':
             case 'bar':
                 return {
-                    datasets: this.config.data.datasets.map((dataset) => {
+                    datasets: this.config.data.datasets.map(dataset => {
                         dataset.label = this.i18n(dataset.label);
                         return dataset;
                     }),
@@ -153,7 +153,7 @@ export default {
                     this.config = data;
                     this.loading = false;
                     this.$emit('fetched', data);
-                }).catch((error) => {
+                }).catch(error => {
                     this.loading = false;
                     this.errorHandler(error);
                 });
