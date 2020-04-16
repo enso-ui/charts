@@ -11,6 +11,7 @@
                 {{ title }}
             </template>
             <template v-slot:controls>
+                <slot name="controls"/>
                 <card-control>
                     <span class="icon is-small download"
                         @click="download">
@@ -133,11 +134,10 @@ export default {
 
     watch: {
         params: {
-            handler() {
-                this.fetch();
-            },
+            handler: 'fetch',
             deep: true,
         },
+        source: 'fetch',
     },
 
     mounted() {
