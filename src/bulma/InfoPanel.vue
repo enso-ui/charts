@@ -101,7 +101,7 @@ export default {
         },
         progress() {
             const progress = this.ready && this.total
-                ? this.sum * this.multiplier / this.total * this.multiplier * 100
+                ? this.sum * this.multiplier / (this.total * this.multiplier) * 100
                 : 0;
 
             return progress < 100 ? progress : 100;
