@@ -57,8 +57,7 @@ export default {
             };
 
             if (this.type !== 'bubble') {
-                options.plugins.datalabels.formatter = (value, context) => this
-                    .formatter(context.chart.data.labels[context.dataIndex]);
+                options.plugins.datalabels.formatter = this.formatter;
             }
 
             if (this.options.scales) {
