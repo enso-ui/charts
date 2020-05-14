@@ -1,4 +1,5 @@
 <script>
+import { shortNumber } from '@enso-ui/mixins';
 import Chart from 'chart.js';
 import 'chartjs-plugin-datalabels';
 
@@ -13,6 +14,10 @@ export default {
         data: {
             type: Object,
             required: true,
+        },
+        shortNumbers: {
+            type: Boolean,
+            default: false,
         },
         formatter: {
             type: Function,
@@ -57,13 +62,17 @@ export default {
             };
 
             if (this.type !== 'bubble') {
-                options.plugins.datalabels.formatter = this.formatter;
+                options.plugins.datalabels.formatter = this.shortNumbers
+                    ? shortNumber
+                    : this.formatter;
             }
 
             if (this.options.scales) {
                 options.scales.yAxes[0].ticks = {
                     min: 0,
-                    callback: v => this.formatter(v),
+                    callback: v => this.shortNumbers
+                        ? shortNumber(v)
+                        : this.formatter(v),
                 };
             }
 
