@@ -67,12 +67,10 @@ export default {
                     : this.formatter;
             }
 
-            if (this.options.scales) {
+            if (options.scales) {
                 options.scales.yAxes[0].ticks = {
                     min: 0,
-                    callback: v => this.shortNumbers
-                        ? shortNumber(v)
-                        : this.formatter(v),
+                    callback: v => (this.shortNumbers ? shortNumber(v) : this.formatter(v)),
                 };
             }
 
