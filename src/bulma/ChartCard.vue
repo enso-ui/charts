@@ -1,7 +1,7 @@
 <template>
     <card collapsible
         :collapsed="collapsed"
-        :loading="loading && false"
+        :loading="loading"
         v-if="config">
         <card-header class="has-background-light">
             <template v-slot:title>
@@ -148,7 +148,6 @@ export default {
     methods: {
         fetch() {
             this.loading = true;
-
             this.ongoingRequest?.cancel()
             this.ongoingRequest = axios.CancelToken.source();
 
