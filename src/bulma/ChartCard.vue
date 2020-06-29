@@ -1,7 +1,7 @@
 <template>
     <card collapsible
         :collapsed="collapsed"
-        :loading="loading"
+        :loading="loading && false"
         v-if="config">
         <card-header class="has-background-light">
             <template v-slot:title>
@@ -95,6 +95,7 @@ export default {
     data: () => ({
         loading: false,
         config: null,
+        ongoingRequest: null,
         icons,
     }),
 
@@ -148,15 +149,20 @@ export default {
         fetch() {
             this.loading = true;
 
-            axios.get(this.source, { params: this.params })
-                .then(({ data }) => {
-                    this.config = data;
-                    this.loading = false;
-                    this.$emit('fetched', data);
-                }).catch(error => {
-                    this.loading = false;
-                    this.errorHandler(error);
-                });
+            this.ongoingRequest?.cancel()
+            this.ongoingRequest = axios.CancelToken.source();
+
+            axios.get(this.source, {
+                params: this.params,
+                cancelToken: this.ongoingRequest.token,
+            }).then(({ data }) => {
+                this.config = data;
+                this.loading = false;
+                this.$emit('fetched', data);
+            }).catch(error => {
+                this.loading = false;
+                this.errorHandler(error);
+            });
         },
         resize() {
             if (!this.chart) {
