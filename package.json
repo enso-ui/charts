@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/enso-ui/charts#readme",
   "dependencies": {
-    "@enso-ui/card": "1.0.x",
-    "@enso-ui/directives": "1.0.x",
-    "@enso-ui/mixins": "1.1.x",
+    "@enso-ui/card": "^2.0",
+    "@enso-ui/directives": "^1.0",
+    "@enso-ui/mixins": "^1.1",
     "@enso-ui/progress-circle": "1.0.x",
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
