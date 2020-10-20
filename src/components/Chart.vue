@@ -68,10 +68,11 @@ export default {
             }
 
             if (options.scales) {
-                options.scales.yAxes[0].ticks = {
-                    min: 0,
-                    callback: v => (this.shortNumbers ? shortNumber(v) : this.formatter(v)),
-                };
+                options.scales.yAxes.filter(({ ticks }) => !ticks)
+                    .forEach(yAxis => yAxis.ticks = {
+                        min: 0,
+                        callback: v => (this.shortNumbers ? shortNumber(v) : this.formatter(v)),
+                    });
             }
 
             return options;
