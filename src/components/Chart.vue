@@ -1,6 +1,6 @@
 <script>
-import { shortNumber } from '@enso-ui/mixins';
 import Chart from 'chart.js';
+import { shortNumber } from '@enso-ui/mixins';
 import 'chartjs-plugin-datalabels';
 
 const types = [
@@ -68,10 +68,11 @@ export default {
             }
 
             if (options.scales) {
-                options.scales.yAxes[0].ticks = {
-                    min: 0,
-                    callback: v => (this.shortNumbers ? shortNumber(v) : this.formatter(v)),
-                };
+                options.scales.yAxes.filter(({ ticks }) => !ticks)
+                    .forEach(yAxis => yAxis.ticks = {
+                        min: 0,
+                        callback: v => (this.shortNumbers ? shortNumber(v) : this.formatter(v)),
+                    });
             }
 
             return options;
@@ -99,14 +100,18 @@ export default {
             });
         },
         update() {
-            if (!this.chart) {
-                this.mount();
-                return;
-            }
+            if (this.chart) {
+                this.$set(this.chart, 'options', this.chartOptions);
+                this.$set(this.chart, 'labels', this.data.labels);
 
-            this.updateDatasets();
-            this.chart.data.labels = this.data.labels;
-            this.chart.update();
+                if (this.sameDatasets()) {
+                    this.updateDatasets();
+                } else {
+                    this.$set(this.chart.data, 'datasets', this.data.datasets);
+                }
+
+                this.chart.update();
+            }
         },
         resize() {
             if (!this.chart) {
@@ -116,11 +121,6 @@ export default {
             this.chart.resize();
         },
         updateDatasets() {
-            if (this.structureChanged()) {
-                this.$set(this.chart.data, 'datasets', this.data.datasets);
-                return;
-            }
-
             this.chart.data.datasets
                 .forEach((dataset, index) => {
                     dataset.data = this.data.datasets[index].data;
@@ -129,11 +129,11 @@ export default {
                         .datalabels.backgroundColor;
                 });
         },
-        structureChanged() {
-            return this.chart.data.datasets.length !== this.data.datasets.length
-                || this.chart.data.datasets
-                    .some(({ label }) => this.data.datasets
-                        .findIndex(dataset => dataset.label === label) === -1);
+        sameDatasets() {
+            return this.chart.data.datasets.length === this.data.datasets.length
+                && this.chart.data.datasets
+                    .every(({ label }) => this.data.datasets
+                        .findIndex(dataset => dataset.label === label) > -1);
         },
         svg() {
             return this.$el.toDataURL('image/jpg');
