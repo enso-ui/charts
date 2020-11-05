@@ -2,6 +2,7 @@
 import Chart from 'chart.js';
 import { shortNumber } from '@enso-ui/mixins';
 import 'chartjs-plugin-datalabels';
+import defaultOptions from './options';
 
 const types = [
     'line', 'bar', 'horizontalBar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
@@ -9,7 +10,6 @@ const types = [
 
 export default {
     name: 'Chart',
-
     props: {
         data: {
             type: Object,
@@ -38,47 +38,6 @@ export default {
         chart: null,
     }),
 
-    computed: {
-        chartOptions() {
-            const options = {
-                tooltips: false,
-                plugins: {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        borderRadius: 3,
-                        padding: 2,
-                        color: 'white',
-                        font: {
-                            style: 'bold',
-                        },
-                        display({ chart, datasetIndex }) {
-                            const meta = chart.getDatasetMeta(datasetIndex);
-                            return !meta.hidden;
-                        },
-                    },
-                },
-                ...this.options,
-            };
-
-            if (this.type !== 'bubble') {
-                options.plugins.datalabels.formatter = this.shortNumbers
-                    ? shortNumber
-                    : this.formatter;
-            }
-
-            if (options.scales) {
-                options.scales.yAxes.filter(({ ticks }) => !ticks)
-                    .forEach(yAxis => yAxis.ticks = {
-                        min: 0,
-                        callback: v => (this.shortNumbers ? shortNumber(v) : this.formatter(v)),
-                    });
-            }
-
-            return options;
-        },
-    },
-
     watch: {
         data: 'update',
     },
@@ -96,55 +55,68 @@ export default {
             this.chart = new Chart(this.$el, {
                 type: this.type,
                 data: this.data,
-                options: this.chartOptions,
+                options: this.processedOptions(),
             });
         },
-        update() {
-            if (this.chart) {
-                this.$set(this.chart, 'options', this.chartOptions);
-                this.$set(this.chart, 'labels', this.data.labels);
+        processedOptions() {
+            const options = { ...defaultOptions, ...this.options };
 
-                if (this.sameDatasets()) {
-                    this.updateDatasets();
-                } else {
-                    this.$set(this.chart.data, 'datasets', this.data.datasets);
-                }
-
-                this.chart.update();
+            if (this.type !== 'bubble') {
+                options.plugins.datalabels.formatter = this.shortNumbers
+                    ? shortNumber
+                    : this.formatter;
             }
+
+            if (options.scales) {
+                const callback = v => this.shortNumbers ? shortNumber(v) : this.formatter(v);
+
+                options.scales.yAxes.filter(({ ticks }) => !ticks)
+                    .forEach(yAxis => yAxis.ticks = { min: 0, callback });
+            }
+
+            return options;
         },
         resize() {
+            if (this.chart) {
+                this.chart.resize();
+            }
+        },
+        structureChanged() {
+            return this.chart.data.datasets.length !== this.data.datasets.length
+                || this.chart.data.datasets
+                    .some(({ label }) => this.data.datasets
+                        .findIndex(dataset => dataset.label === label) === -1);
+        },
+        svg() {
+            return this.$el.toDataURL('image/jpg');
+        },
+        update() {
             if (!this.chart) {
                 return;
             }
 
-            this.chart.resize();
+            if (this.structureChanged()) {
+                this.$set(this.chart.data, 'datasets', this.data.datasets);
+            } else {
+                this.updateDatasets();
+                this.$set(this.chart.data, 'labels', this.data.labels);
+                this.chart.update();
+            }
+
         },
         updateDatasets() {
-            this.chart.data.datasets
-                .forEach((dataset, index) => {
-                    dataset.data = this.data.datasets[index].data;
-                    dataset.backgroundColor = this.data.datasets[index].backgroundColor;
-                    dataset.datalabels.backgroundColor = this.data.datasets[index]
-                        .datalabels.backgroundColor;
-                });
-        },
-        sameDatasets() {
-            return this.chart.data.datasets.length === this.data.datasets.length
-                && this.chart.data.datasets
-                    .every(({ label }) => this.data.datasets
-                        .findIndex(dataset => dataset.label === label) > -1);
-        },
-        svg() {
-            return this.$el.toDataURL('image/jpg');
+            this.chart.data.datasets.forEach((dataset, index) => {
+                dataset.data = this.data.datasets[index].data;
+                dataset.backgroundColor = this.data.datasets[index].backgroundColor;
+                dataset.datalabels.backgroundColor = this.data.datasets[index]
+                    .datalabels.backgroundColor;
+            });
         },
     },
 
     render(createEl) {
         return createEl('canvas', {
-            style: {
-                maxWidth: '100%',
-            },
+            style: { maxWidth: '100%' },
         });
     },
 };
