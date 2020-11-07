@@ -68,10 +68,10 @@ export default {
             }
 
             if (options.scales) {
-                const callback = v => this.shortNumbers ? shortNumber(v) : this.formatter(v);
+                const callback = v => (this.shortNumbers ? shortNumber(v) : this.formatter(v));
 
-                options.scales.yAxes.filter(({ ticks }) => !ticks)
-                    .forEach(yAxis => yAxis.ticks = { min: 0, callback });
+                options.scales.yAxes
+                    .forEach(yAxis => (yAxis.ticks = { callback, ...yAxis.ticks }));
             }
 
             return options;
@@ -102,7 +102,6 @@ export default {
                 this.$set(this.chart.data, 'labels', this.data.labels);
                 this.chart.update();
             }
-
         },
         updateDatasets() {
             this.chart.data.datasets.forEach((dataset, index) => {
