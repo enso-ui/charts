@@ -59,7 +59,7 @@ export default {
             });
         },
         processedOptions() {
-            const options = { ...defaultOptions, ...this.options };
+            const options = { ...this.defaultOptions(), ...this.options };
 
             if (this.type !== 'bubble') {
                 options.plugins.datalabels.formatter = this.shortNumbers
@@ -110,6 +110,9 @@ export default {
                 dataset.datalabels.backgroundColor = this.data.datasets[index]
                     .datalabels.backgroundColor;
             });
+        },
+        defaultOptions() {
+            return JSON.parse(JSON.stringify(defaultOptions));
         },
     },
 
