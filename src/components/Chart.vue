@@ -70,6 +70,8 @@ export default {
                     : this.formatter;
             }
 
+            options.plugins.datalabels.display = this.display;
+
             if (options.scales) {
                 const callback = v => (this.shortNumbers ? shortNumber(v) : this.formatter(v));
 
@@ -116,6 +118,9 @@ export default {
                 dataset.datalabels.backgroundColor = this.data.datasets[index]
                     .datalabels.backgroundColor;
             });
+        },
+        display({ chart, datasetIndex }) {
+            return !chart.getDatasetMeta(datasetIndex).hidden;
         },
     },
 
