@@ -10,10 +10,6 @@ export default {
             font: {
                 style: 'bold',
             },
-            display({ chart, datasetIndex }) {
-                const meta = chart.getDatasetMeta(datasetIndex);
-                return !meta.hidden;
-            },
         },
     },
 };
