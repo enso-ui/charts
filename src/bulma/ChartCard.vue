@@ -149,6 +149,7 @@ export default {
 
     methods: {
         fetch() {
+            this.$emit('fetching');
             this.loading = true;
             this.ongoingRequest?.cancel();
             this.ongoingRequest = axios.CancelToken.source();
