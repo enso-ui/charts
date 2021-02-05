@@ -107,10 +107,12 @@ export default {
             return this.i18n(this.config.title);
         },
         data() {
-            switch (this.config.type) {
+            const { data, type } = this.config;
+
+            switch (type) {
             case 'bubble':
                 return {
-                    datasets: this.config.data.datasets.map(dataset => {
+                    datasets: data.datasets.map(dataset => {
                         dataset.label = this.i18n(dataset.label);
                         return dataset;
                     }),
@@ -118,16 +120,16 @@ export default {
             case 'line':
             case 'bar':
                 return {
-                    datasets: this.config.data.datasets.map(dataset => {
+                    datasets: data.datasets.map(dataset => {
                         dataset.label = this.i18n(dataset.label);
                         return dataset;
                     }),
-                    labels: this.config.data.labels.map(label => this.i18n(label)),
+                    labels: data.labels.map(label => this.i18n(label)),
                 };
             default:
                 return {
-                    datasets: this.config.data.datasets,
-                    labels: this.config.data.labels.map(label => this.i18n(label)),
+                    datasets: data.datasets,
+                    labels: data.labels.map(label => this.i18n(label)),
                 };
             }
         },
@@ -147,8 +149,9 @@ export default {
 
     methods: {
         fetch() {
+            this.$emit('fetching');
             this.loading = true;
-            this.ongoingRequest?.cancel()
+            this.ongoingRequest?.cancel();
             this.ongoingRequest = axios.CancelToken.source();
 
             axios.get(this.source, {

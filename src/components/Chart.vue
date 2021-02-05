@@ -51,6 +51,9 @@ export default {
     },
 
     methods: {
+        defaultOptions() {
+            return JSON.parse(JSON.stringify(defaultOptions));
+        },
         mount() {
             this.chart = new Chart(this.$el, {
                 type: this.type,
@@ -58,8 +61,8 @@ export default {
                 options: this.processedOptions(),
             });
         },
-        processedOptions() {
-            const options = { ...defaultOptions, ...this.options };
+        processedOptions(property = null) {
+            const options = { ...this.defaultOptions(), ...this.options };
 
             if (this.type !== 'bubble') {
                 options.plugins.datalabels.formatter = this.shortNumbers
@@ -67,14 +70,16 @@ export default {
                     : this.formatter;
             }
 
-            if (options.scales) {
-                const callback = v => this.shortNumbers ? shortNumber(v) : this.formatter(v);
+            options.plugins.datalabels.display = this.display;
 
-                options.scales.yAxes.filter(({ ticks }) => !ticks)
-                    .forEach(yAxis => yAxis.ticks = { min: 0, callback });
+            if (options.scales) {
+                const callback = v => (this.shortNumbers ? shortNumber(v) : this.formatter(v));
+
+                options.scales.yAxes
+                    .forEach(yAxis => (yAxis.ticks = { callback, ...yAxis.ticks }));
             }
 
-            return options;
+            return property ? options[property] : options;
         },
         resize() {
             if (this.chart) {
@@ -95,14 +100,16 @@ export default {
                 return;
             }
 
+            this.$set(this.chart.options, 'scales', this.processedOptions('scales'));
+
             if (this.structureChanged()) {
                 this.$set(this.chart.data, 'datasets', this.data.datasets);
             } else {
                 this.updateDatasets();
                 this.$set(this.chart.data, 'labels', this.data.labels);
-                this.chart.update();
             }
 
+            this.chart.update();
         },
         updateDatasets() {
             this.chart.data.datasets.forEach((dataset, index) => {
@@ -111,6 +118,9 @@ export default {
                 dataset.datalabels.backgroundColor = this.data.datasets[index]
                     .datalabels.backgroundColor;
             });
+        },
+        display({ chart, datasetIndex }) {
+            return !chart.getDatasetMeta(datasetIndex).hidden;
         },
     },
 
