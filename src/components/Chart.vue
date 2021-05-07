@@ -10,6 +10,7 @@ const types = [
 
 export default {
     name: 'Chart',
+
     props: {
         data: {
             type: Object,
@@ -61,7 +62,7 @@ export default {
                 options: this.processedOptions(),
             });
         },
-        processedOptions(property = null) {
+        processedOptions() {
             const options = { ...this.defaultOptions(), ...this.options };
 
             if (this.type !== 'bubble') {
@@ -79,7 +80,7 @@ export default {
                     .forEach(yAxis => (yAxis.ticks = { callback, ...yAxis.ticks }));
             }
 
-            return property ? options[property] : options;
+            return options;
         },
         resize() {
             if (this.chart) {
@@ -100,7 +101,7 @@ export default {
                 return;
             }
 
-            this.$set(this.chart.options, 'scales', this.processedOptions('scales'));
+            this.$set(this.chart, 'options', this.processedOptions());
 
             if (this.structureChanged()) {
                 this.$set(this.chart.data, 'datasets', this.data.datasets);
@@ -111,6 +112,7 @@ export default {
 
             this.chart.update();
         },
+
         updateDatasets() {
             this.chart.data.datasets.forEach((dataset, index) => {
                 dataset.data = this.data.datasets[index].data;
