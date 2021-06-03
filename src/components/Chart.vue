@@ -16,6 +16,11 @@ export default {
             type: Object,
             required: true,
         },
+        display: {
+            type: Function,
+            default: ({ chart, datasetIndex }) => !chart
+                .getDatasetMeta(datasetIndex).hidden
+        },
         shortNumbers: {
             type: Boolean,
             default: false,
@@ -120,9 +125,6 @@ export default {
                 dataset.datalabels.backgroundColor = this.data.datasets[index]
                     .datalabels.backgroundColor;
             });
-        },
-        display({ chart, datasetIndex }) {
-            return !chart.getDatasetMeta(datasetIndex).hidden;
         },
     },
 
