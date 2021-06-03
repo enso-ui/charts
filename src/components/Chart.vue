@@ -112,8 +112,9 @@ export default {
                 this.$set(this.chart.data, 'datasets', this.data.datasets);
             } else {
                 this.updateDatasets();
-                this.$set(this.chart.data, 'labels', this.data.labels);
             }
+
+            this.$set(this.chart.data, 'labels', this.data.labels);
 
             this.chart.update();
         },
