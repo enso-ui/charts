@@ -110,11 +110,10 @@ export default {
 
             if (this.structureChanged()) {
                 this.$set(this.chart.data, 'datasets', this.data.datasets);
+                this.$set(this.chart.data, 'labels', this.data.labels);
             } else {
                 this.updateDatasets();
             }
-
-            this.$set(this.chart.data, 'labels', this.data.labels);
 
             this.chart.update();
         },
