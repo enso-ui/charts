@@ -4,7 +4,7 @@
         <div class="level is-mobile">
             <div class="level-left">
                 <div class="level-item">
-                    <p class="subtitle is-5 has-padding-medium">
+                    <p class="subtitle is-5 p-2">
                         {{ dataset.label }}
                     </p>
                 </div>
@@ -20,7 +20,7 @@
                         :width="75"
                         :progress-stroke="dataset.borderColor"
                         v-if="svg"/>
-                    <p class="title is-5 has-padding-large"
+                    <p class="title is-5 p-3"
                         v-else>
                         <span v-if="shortNumbers">
                             {{ sum | shortNumber }} / {{ total | shortNumber }}
@@ -34,7 +34,7 @@
             <div class="level-right"
                 v-else>
                 <div class="level-item">
-                    <p class="title is-5 has-padding-large">
+                    <p class="title is-5 p-3">
                         <span v-if="shortNumbers">
                             {{ sum | shortNumber }}
                         </span>

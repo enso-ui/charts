@@ -5,7 +5,7 @@
         v-if="config">
         <card-header class="has-background-light">
             <template v-slot:title>
-                <span class="icon is-small has-margin-right-small">
+                <span class="icon is-small mr-1">
                     <fa :icon="icon"/>
                 </span>
                 {{ title }}
@@ -22,7 +22,7 @@
                 <card-collapse/>
             </template>
         </card-header>
-        <card-content class="has-padding-medium">
+        <card-content class="p-2">
             <slot :config="config"/>
             <chart :data="data"
                 :options="config.options"
