@@ -24,10 +24,10 @@
         </card-header>
         <card-content class="p-2">
             <slot :config="config"/>
-            <chart :data="data"
+            <chart v-bind="$attrs"
+                :data="data"
                 :options="config.options"
                 :type="config.type"
-                v-bind="$attrs"
                 ref="chart"/>
         </card-content>
     </card>

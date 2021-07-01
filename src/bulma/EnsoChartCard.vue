@@ -1,7 +1,7 @@
 <template>
-    <chart-card :i18n="i18n"
+    <chart-card v-bind="$attrs"
+        :i18n="i18n"
         :error-handler="errorHandler"
-        v-bind="$attrs"
         v-on="$listeners"
         @fetched="ready = true"
         ref="chart">
