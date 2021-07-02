@@ -72,7 +72,7 @@ export default {
 
             if (this.type !== 'bubble') {
                 options.plugins.datalabels.formatter = this.shortNumbers
-                    ? shortNumber
+                    ? v => shortNumber(v)
                     : this.formatter;
             }
 
