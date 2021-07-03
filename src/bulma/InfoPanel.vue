@@ -23,7 +23,7 @@
                     <p class="title is-5 p-3"
                         v-else>
                         <span v-if="shortNumbers">
-                            {{ sum | shortNumber }} / {{ total | shortNumber }}
+                            {{ shortNumber(sum) }} / {{ shortNumber(total) }}
                         </span>
                         <span v-else>
                             {{ sum }} / {{ total }}
@@ -36,7 +36,7 @@
                 <div class="level-item">
                     <p class="title is-5 p-3">
                         <span v-if="shortNumbers">
-                            {{ sum | shortNumber }}
+                            {{ shortNumber(sum) }}
                         </span>
                         <span v-else>
                             {{ sum }}
@@ -57,8 +57,6 @@ export default {
     name: 'InfoPanel',
 
     directives: { clickOutside },
-
-    filters: { shortNumber },
 
     components: { ProgressCircle },
 
@@ -108,6 +106,12 @@ export default {
         },
         ready() {
             return !!this.dataset.data;
+        },
+    },
+
+    methods: {
+        shortNumber(value) {
+            return shortNumber(value);
         },
     },
 };
