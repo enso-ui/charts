@@ -1,7 +1,7 @@
 <template>
     <div class="box info-box is-paddingless stats"
         :style="border">
-        <div class="level is-mobile">
+        <div class="level is-mobile level-is-shrinkable">
             <div class="level-left">
                 <div class="level-item">
                     <p class="subtitle is-5 p-2">
@@ -130,6 +130,16 @@ export default {
                 border-top-right-radius: inherit;
                 border-bottom-right-radius: inherit;
             }
+        }
+        .level-item {
+               min-width: 0;
+               overflow: hidden;
+           }
+        .level-is-shrinkable .level-left {
+            min-width: 0;
+            flex-shrink: 1;
+            overflow: hidden;
+            text-overflow: hidden;
         }
     }
 </style>
