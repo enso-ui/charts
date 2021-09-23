@@ -1,7 +1,12 @@
 <script>
-import Chart from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import { shortNumber } from '@enso-ui/mixins';
-import 'chartjs-plugin-datalabels';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
+Chart.register(...registerables, ChartDataLabels, annotationPlugin);
+
+
 import defaultOptions from './options';
 
 const types = [
@@ -68,24 +73,24 @@ export default {
             });
         },
         processedOptions() {
-            const options = { ...this.defaultOptions(), ...this.options };
+            // const options = { ...this.defaultOptions(), ...this.options };
 
-            if (this.type !== 'bubble') {
-                options.plugins.datalabels.formatter = this.shortNumbers
-                    ? v => shortNumber(v)
-                    : this.formatter;
-            }
+            // if (this.type !== 'bubble') {
+            //     options.plugins.datalabels.formatter = this.shortNumbers
+            //         ? v => shortNumber(v)
+            //         : this.formatter;
+            // }
 
-            options.plugins.datalabels.display = this.display;
+            // options.plugins.datalabels.display = this.display;
 
-            if (options.scales) {
-                const callback = v => (this.shortNumbers ? shortNumber(v) : this.formatter(v));
+            // if (options.scales) {
+            //     const callback = v => (this.shortNumbers ? shortNumber(v) : this.formatter(v));
 
-                options.scales.yAxes
-                    .forEach(yAxis => (yAxis.ticks = { callback, ...yAxis.ticks }));
-            }
+                // options.scales.yAxes
+                //     .forEach(yAxis => (yAxis.ticks = { callback, ...yAxis.ticks }));
+            // }
 
-            return options;
+            return this.defaultOptions();
         },
         resize() {
             if (this.chart) {
@@ -106,7 +111,8 @@ export default {
                 return;
             }
 
-            this.$set(this.chart, 'options', this.processedOptions());
+            // this.$set(this.chart, 'options', this.processedOptions());
+            this.chart.options = this.processedOptions()
 
             if (this.structureChanged()) {
                 this.$set(this.chart.data, 'datasets', this.data.datasets);

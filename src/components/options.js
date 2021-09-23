@@ -8,7 +8,7 @@ export default {
             padding: 2,
             color: 'white',
             font: {
-                style: 'bold',
+                weight: 'bold',
             },
         },
     },
