@@ -30,7 +30,11 @@ export default {
             type: Boolean,
             default: false,
         },
-        formatter: {
+        valueFormatter: {
+            type: Function,
+            default: v => v,
+        },
+        scaleFormatter: {
             type: Function,
             default: v => v,
         },
@@ -45,10 +49,6 @@ export default {
         },
     },
 
-    data: () => ({
-        chart: null,
-    }),
-
     watch: {
         data: 'update',
     },
@@ -58,7 +58,7 @@ export default {
     },
 
     beforeDestroy() {
-        this.chart.destroy();
+        this._chart.destroy();
     },
 
     methods: {
@@ -66,40 +66,40 @@ export default {
             return JSON.parse(JSON.stringify(defaultOptions));
         },
         mount() {
-            this.chart = new Chart(this.$el, {
+            this._chart = new Chart(this.$el, {
                 type: this.type,
                 data: this.data,
                 options: this.processedOptions(),
             });
         },
         processedOptions() {
-            // const options = { ...this.defaultOptions(), ...this.options };
+            if (this.type !== 'bubble') {
+                this.options.plugins.datalabels.formatter = this.shortNumbers
+                    ? shortNumber
+                    : this.valueFormatter;
+            }
 
-            // if (this.type !== 'bubble') {
-            //     options.plugins.datalabels.formatter = this.shortNumbers
-            //         ? v => shortNumber(v)
-            //         : this.formatter;
-            // }
+            this.options.plugins.datalabels.display = this.display;
 
-            // options.plugins.datalabels.display = this.display;
+            if (this.options.scales) {
+                if (this.shortNumbers) {
+                    const { y } = this.options.scales; 
+                    y.ticks = { shortNumber, ...y.ticks };
+                }
 
-            // if (options.scales) {
-            //     const callback = v => (this.shortNumbers ? shortNumber(v) : this.formatter(v));
+                this.scaleFormatter(this.options.scales);
+            }
 
-                // options.scales.yAxes
-                //     .forEach(yAxis => (yAxis.ticks = { callback, ...yAxis.ticks }));
-            // }
-
-            return this.defaultOptions();
+            return this.options;
         },
         resize() {
-            if (this.chart) {
-                this.chart.resize();
+            if (this._chart) {
+                this._chart.resize();
             }
         },
         structureChanged() {
-            return this.chart.data.datasets.length !== this.data.datasets.length
-                || this.chart.data.datasets
+            return this._chart.data.datasets.length !== this.data.datasets.length
+                || this._chart.data.datasets
                     .some(({ label }) => this.data.datasets
                         .findIndex(dataset => dataset.label === label) === -1);
         },
@@ -107,26 +107,25 @@ export default {
             return this.$el.toDataURL('image/jpg');
         },
         update() {
-            if (!this.chart) {
+            if (!this._chart) {
                 return;
             }
 
-            // this.$set(this.chart, 'options', this.processedOptions());
-            this.chart.options = this.processedOptions()
+            this.$set(this._chart, 'options', this.processedOptions());
 
             if (this.structureChanged()) {
-                this.$set(this.chart.data, 'datasets', this.data.datasets);
+                this.$set(this._chart.data, 'datasets', this.data.datasets);
             } else {
                 this.updateDatasets();
             }
 
-            this.$set(this.chart.data, 'labels', this.data.labels);
+            this.$set(this._chart.data, 'labels', this.data.labels);
 
-            this.chart.update();
+            this._chart.update();
         },
 
         updateDatasets() {
-            this.chart.data.datasets.forEach((dataset, index) => {
+            this._chart.data.datasets.forEach((dataset, index) => {
                 dataset.data = this.data.datasets[index].data;
                 dataset.backgroundColor = this.data.datasets[index].backgroundColor;
                 dataset.datalabels.backgroundColor = this.data.datasets[index]
