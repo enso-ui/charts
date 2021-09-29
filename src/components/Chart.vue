@@ -6,9 +6,6 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 
 Chart.register(...registerables, ChartDataLabels, annotationPlugin);
 
-
-import defaultOptions from './options';
-
 const types = [
     'line', 'bar', 'horizontalBar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
 ];
@@ -62,9 +59,6 @@ export default {
     },
 
     methods: {
-        defaultOptions() {
-            return JSON.parse(JSON.stringify(defaultOptions));
-        },
         mount() {
             this._chart = new Chart(this.$el, {
                 type: this.type,
