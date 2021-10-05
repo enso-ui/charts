@@ -55,12 +55,12 @@ export default {
     },
 
     beforeDestroy() {
-        this._chart.destroy();
+        this.chart.destroy();
     },
 
     methods: {
         mount() {
-            this._chart = new Chart(this.$el, {
+            this.chart = new Chart(this.$el, {
                 type: this.type,
                 data: this.data,
                 options: this.processedOptions(),
@@ -87,13 +87,13 @@ export default {
             return this.options;
         },
         resize() {
-            if (this._chart) {
-                this._chart.resize();
+            if (this.chart) {
+                this.chart.resize();
             }
         },
         structureChanged() {
-            return this._chart.data.datasets.length !== this.data.datasets.length
-                || this._chart.data.datasets
+            return this.chart.data.datasets.length !== this.data.datasets.length
+                || this.chart.data.datasets
                     .some(({ label }) => this.data.datasets
                         .findIndex(dataset => dataset.label === label) === -1);
         },
@@ -101,25 +101,25 @@ export default {
             return this.$el.toDataURL('image/jpg');
         },
         update() {
-            if (!this._chart) {
+            if (!this.chart) {
                 return;
             }
 
-            this.$set(this._chart, 'options', this.processedOptions());
+            this.$set(this.chart, 'options', this.processedOptions());
 
             if (this.structureChanged()) {
-                this.$set(this._chart.data, 'datasets', this.data.datasets);
+                this.$set(this.chart.data, 'datasets', this.data.datasets);
             } else {
                 this.updateDatasets();
             }
 
-            this.$set(this._chart.data, 'labels', this.data.labels);
+            this.$set(this.chart.data, 'labels', this.data.labels);
 
-            this._chart.update();
+            this.chart.update();
         },
 
         updateDatasets() {
-            this._chart.data.datasets.forEach((dataset, index) => {
+            this.chart.data.datasets.forEach((dataset, index) => {
                 dataset.data = this.data.datasets[index].data;
                 dataset.backgroundColor = this.data.datasets[index].backgroundColor;
                 dataset.datalabels.backgroundColor = this.data.datasets[index]
