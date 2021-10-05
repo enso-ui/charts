@@ -1,8 +1,10 @@
 <script>
-import Chart from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import { shortNumber } from '@enso-ui/mixins';
-import 'chartjs-plugin-datalabels';
-import defaultOptions from './options';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
+Chart.register(...registerables, ChartDataLabels, annotationPlugin);
 
 const types = [
     'line', 'bar', 'horizontalBar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
@@ -25,7 +27,11 @@ export default {
             type: Boolean,
             default: false,
         },
-        formatter: {
+        valueFormatter: {
+            type: Function,
+            default: v => v,
+        },
+        scaleFormatter: {
             type: Function,
             default: v => v,
         },
@@ -40,10 +46,6 @@ export default {
         },
     },
 
-    data: () => ({
-        chart: null,
-    }),
-
     watch: {
         data: 'update',
     },
@@ -57,9 +59,6 @@ export default {
     },
 
     methods: {
-        defaultOptions() {
-            return JSON.parse(JSON.stringify(defaultOptions));
-        },
         mount() {
             this.chart = new Chart(this.$el, {
                 type: this.type,
@@ -68,24 +67,24 @@ export default {
             });
         },
         processedOptions() {
-            const options = { ...this.defaultOptions(), ...this.options };
-
             if (this.type !== 'bubble') {
-                options.plugins.datalabels.formatter = this.shortNumbers
-                    ? v => shortNumber(v)
-                    : this.formatter;
+                this.options.plugins.datalabels.formatter = this.shortNumbers
+                    ? shortNumber
+                    : this.valueFormatter;
             }
 
-            options.plugins.datalabels.display = this.display;
+            this.options.plugins.datalabels.display = this.display;
 
-            if (options.scales) {
-                const callback = v => (this.shortNumbers ? shortNumber(v) : this.formatter(v));
+            if (this.options.scales) {
+                if (this.shortNumbers) {
+                    const { y } = this.options.scales; 
+                    y.ticks = { shortNumber, ...y.ticks };
+                }
 
-                options.scales.yAxes
-                    .forEach(yAxis => (yAxis.ticks = { callback, ...yAxis.ticks }));
+                this.scaleFormatter(this.options.scales);
             }
 
-            return options;
+            return this.options;
         },
         resize() {
             if (this.chart) {
