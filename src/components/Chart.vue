@@ -3,12 +3,15 @@ import { Chart, registerables } from 'chart.js';
 import { shortNumber } from '@enso-ui/mixins';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import annotationPlugin from 'chartjs-plugin-annotation';
+import defaultOptions from './options';
 
 Chart.register(...registerables, ChartDataLabels, annotationPlugin);
 
 const types = [
     'line', 'bar', 'horizontalBar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
 ];
+
+// let chart = null;
 
 export default {
     name: 'Chart',
@@ -59,6 +62,9 @@ export default {
     },
 
     methods: {
+        defaultOptions() {
+            return JSON.parse(JSON.stringify(defaultOptions));
+        },
         mount() {
             this.chart = new Chart(this.$el, {
                 type: this.type,
@@ -67,24 +73,28 @@ export default {
             });
         },
         processedOptions() {
+            const options = Object.keys(this.options).length
+                ? this.options
+                : this.defaultOptions()
+
             if (this.type !== 'bubble') {
-                this.options.plugins.datalabels.formatter = this.shortNumbers
+                options.plugins.datalabels.formatter = this.shortNumbers
                     ? shortNumber
                     : this.valueFormatter;
             }
 
-            this.options.plugins.datalabels.display = this.display;
+            options.plugins.datalabels.display = this.display;
 
-            if (this.options.scales) {
+            if (options.scales) {
                 if (this.shortNumbers) {
-                    const { y } = this.options.scales; 
+                    const { y } = options.scales; 
                     y.ticks = { shortNumber, ...y.ticks };
                 }
 
-                this.scaleFormatter(this.options.scales);
+                this.scaleFormatter(options.scales);
             }
 
-            return this.options;
+            return options;
         },
         resize() {
             if (this.chart) {
