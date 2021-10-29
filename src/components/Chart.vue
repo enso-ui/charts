@@ -1,6 +1,6 @@
 <script>
 import { Chart, registerables } from 'chart.js';
-import { shortNumber } from '@enso-ui/mixins';
+import shortNumber from '../formatters/shortNumber.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import defaultOptions from './options';
@@ -10,8 +10,6 @@ Chart.register(...registerables, ChartDataLabels, annotationPlugin);
 const types = [
     'line', 'bar', 'horizontalBar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
 ];
-
-// let chart = null;
 
 export default {
     name: 'Chart',
@@ -78,7 +76,7 @@ export default {
                 : this.defaultOptions()
 
             if (this.type !== 'bubble') {
-                options.plugins.datalabels.formatter = this.shortNumbers
+                options.plugins.datalabels.formatter = this.shortNumbers || options.shortNumbers
                     ? shortNumber
                     : this.valueFormatter;
             }
@@ -127,7 +125,6 @@ export default {
 
             this.chart.update();
         },
-
         updateDatasets() {
             this.chart.data.datasets.forEach((dataset, index) => {
                 dataset.data = this.data.datasets[index].data;
