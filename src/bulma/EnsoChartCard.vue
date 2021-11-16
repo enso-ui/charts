@@ -1,14 +1,13 @@
 <template>
     <chart-card v-bind="$attrs"
         :i18n="i18n"
-        :error-handler="errorHandler"
-        v-on="$listeners"
+        :error-handler="errorHandler"   
         @fetched="ready = true"
         ref="chart">
-        <template #:controls>
+        <template #controls>
             <slot name="controls"/>
         </template>
-        <template #:default="props">
+        <template #default="props">
             <slot v-bind="props"/>
         </template>
     </chart-card>

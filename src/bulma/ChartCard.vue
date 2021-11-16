@@ -4,13 +4,13 @@
         :loading="loading"
         v-if="config">
         <card-header class="has-background-light">
-            <template #:title>
+            <template #title>
                 <span class="icon is-small mr-1">
                     <fa :icon="icon"/>
                 </span>
                 {{ title }}
             </template>
-            <template #:controls>
+            <template #controls>
                 <slot name="controls"/>
                 <card-control>
                     <span class="icon is-small download"
