@@ -35,6 +35,7 @@
 
 <script>
 import { saveAs } from 'file-saver';
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faChartBar, faChartPie, faChartLine, faChartArea, faCircleNotch, faCircle, faDownload,
@@ -64,7 +65,14 @@ export default {
     name: 'ChartCard',
 
     components: {
-        Card, CardHeader, CardRefresh, CardCollapse, CardControl, Chart, CardContent,
+        Fa,
+        Card,
+        CardHeader,
+        CardRefresh,
+        CardCollapse,
+        CardControl,
+        Chart,
+        CardContent,
     },
 
     props: {
