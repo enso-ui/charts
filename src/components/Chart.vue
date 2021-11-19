@@ -1,4 +1,5 @@
 <script>
+import { h } from 'vue';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import annotationPlugin from 'chartjs-plugin-annotation';
@@ -138,8 +139,8 @@ export default {
         },
     },
 
-    render(createEl) {
-        return createEl('canvas', {
+    render() {
+        return h('canvas', {
             style: { maxWidth: '100%' },
         });
     },
