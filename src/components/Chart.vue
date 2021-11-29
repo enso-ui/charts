@@ -117,15 +117,15 @@ export default {
                 return;
             }
 
-            this.$set(this.chart, 'options', this.processedOptions());
+            this.chart.options = this.processedOptions();
 
             if (this.structureChanged()) {
-                this.$set(this.chart.data, 'datasets', this.data.datasets);
+                this.chart.data.datasets = this.data.datasets;
             } else {
                 this.updateDatasets();
             }
 
-            this.$set(this.chart.data, 'labels', this.data.labels);
+            this.chart.data.labels = this.data.labels;
 
             this.chart.update();
         },
