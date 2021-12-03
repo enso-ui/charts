@@ -100,6 +100,8 @@ export default {
         },
     },
 
+    emits: ['fetching', 'fetched'],
+
     data: () => ({
         loading: false,
         config: null,
