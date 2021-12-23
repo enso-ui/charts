@@ -75,6 +75,8 @@ export default {
         CardContent,
     },
 
+    inject: ['http'],
+
     props: {
         collapsed: {
             type: Boolean,
@@ -162,9 +164,9 @@ export default {
             this.$emit('fetching');
             this.loading = true;
             this.ongoingRequest?.cancel();
-            this.ongoingRequest = axios.CancelToken.source();
+            this.ongoingRequest = this.http.CancelToken.source();
 
-            axios.get(this.source, {
+            this.http.get(this.source, {
                 params: this.params,
                 cancelToken: this.ongoingRequest.token,
             }).then(({ data }) => {
