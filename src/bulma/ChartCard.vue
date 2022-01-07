@@ -1,5 +1,6 @@
 <template>
-    <card collapsible
+    <card :class="$attrs.class"
+        collapsible
         :collapsed="collapsed"
         :loading="loading"
         v-if="config">
@@ -76,6 +77,8 @@ export default {
     },
 
     inject: ['http'],
+
+    inheritAttrs: false,
 
     props: {
         collapsed: {
