@@ -3,7 +3,7 @@ import { h } from 'vue';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import shortNumber from '../formatters/shortNumber.js';
+import shortNumber from '../formatters/shortNumber';
 import defaultOptions from './options';
 
 Chart.register(...registerables, ChartDataLabels, annotationPlugin);
