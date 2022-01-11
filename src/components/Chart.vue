@@ -14,6 +14,8 @@ const types = [
 export default {
     name: 'Chart',
 
+    inheritAttrs: false,
+
     props: {
         data: {
             type: Object,
