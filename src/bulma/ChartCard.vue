@@ -1,16 +1,17 @@
 <template>
-    <card collapsible
+    <card :class="$attrs.class"
+        collapsible
         :collapsed="collapsed"
         :loading="loading"
         v-if="config">
         <card-header class="has-background-light">
-            <template v-slot:title>
+            <template #title>
                 <span class="icon is-small mr-1">
                     <fa :icon="icon"/>
                 </span>
                 {{ title }}
             </template>
-            <template v-slot:controls>
+            <template #controls>
                 <slot name="controls"/>
                 <card-control>
                     <span class="icon is-small download"
@@ -35,6 +36,7 @@
 
 <script>
 import { saveAs } from 'file-saver';
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faChartBar, faChartPie, faChartLine, faChartArea, faCircleNotch, faCircle, faDownload,
@@ -64,8 +66,19 @@ export default {
     name: 'ChartCard',
 
     components: {
-        Card, CardHeader, CardRefresh, CardCollapse, CardControl, Chart, CardContent,
+        Fa,
+        Card,
+        CardHeader,
+        CardRefresh,
+        CardCollapse,
+        CardControl,
+        Chart,
+        CardContent,
     },
+
+    inject: ['http'],
+
+    inheritAttrs: false,
 
     props: {
         collapsed: {
@@ -91,6 +104,8 @@ export default {
             required: true,
         },
     },
+
+    emits: ['fetching', 'fetched'],
 
     data: () => ({
         loading: false,
@@ -152,9 +167,9 @@ export default {
             this.$emit('fetching');
             this.loading = true;
             this.ongoingRequest?.cancel();
-            this.ongoingRequest = axios.CancelToken.source();
+            this.ongoingRequest = this.http.CancelToken.source();
 
-            axios.get(this.source, {
+            this.http.get(this.source, {
                 params: this.params,
                 cancelToken: this.ongoingRequest.token,
             }).then(({ data }) => {
