@@ -1,8 +1,9 @@
 <script>
+import { h } from 'vue';
 import { Chart, registerables } from 'chart.js';
-import shortNumber from '../formatters/shortNumber.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import annotationPlugin from 'chartjs-plugin-annotation';
+import shortNumber from '../formatters/shortNumber';
 import defaultOptions from './options';
 
 Chart.register(...registerables, ChartDataLabels, annotationPlugin);
@@ -22,7 +23,7 @@ export default {
         display: {
             type: Function,
             default: ({ chart, datasetIndex }) => !chart
-                .getDatasetMeta(datasetIndex).hidden
+                .getDatasetMeta(datasetIndex).hidden,
         },
         shortNumbers: {
             type: Boolean,
@@ -48,14 +49,17 @@ export default {
     },
 
     watch: {
-        data: 'update',
+        data: {
+            handler: 'update',
+            deep: true,
+        },
     },
 
     mounted() {
         this.mount();
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
         this.chart.destroy();
     },
 
@@ -73,7 +77,7 @@ export default {
         processedOptions() {
             const options = Object.keys(this.options).length
                 ? this.options
-                : this.defaultOptions()
+                : this.defaultOptions();
 
             if (this.type !== 'bubble') {
                 options.plugins.datalabels.formatter = this.shortNumbers || options.shortNumbers
@@ -85,7 +89,7 @@ export default {
 
             if (options.scales) {
                 if (this.shortNumbers) {
-                    const { y } = options.scales; 
+                    const { y } = options.scales;
                     y.ticks = { shortNumber, ...y.ticks };
                 }
 
@@ -113,15 +117,15 @@ export default {
                 return;
             }
 
-            this.$set(this.chart, 'options', this.processedOptions());
+            this.chart.options = this.processedOptions();
 
             if (this.structureChanged()) {
-                this.$set(this.chart.data, 'datasets', this.data.datasets);
+                this.chart.data.datasets = this.data.datasets;
             } else {
                 this.updateDatasets();
             }
 
-            this.$set(this.chart.data, 'labels', this.data.labels);
+            this.chart.data.labels = this.data.labels;
 
             this.chart.update();
         },
@@ -135,8 +139,8 @@ export default {
         },
     },
 
-    render(createEl) {
-        return createEl('canvas', {
+    render() {
+        return h('canvas', {
             style: { maxWidth: '100%' },
         });
     },
