@@ -24,7 +24,7 @@
   "dependencies": {
     "@enso-ui/card": "^3.0",
     "@enso-ui/directives": "^2.0",
-    "@enso-ui/mixins": "^3.0",
+    "@enso-ui/mixins": "^4.0",
     "@enso-ui/progress-circle": "^2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
