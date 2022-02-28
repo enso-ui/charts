@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/charts",
-  "version": "3.0.14",
+  "version": "4.0.0",
   "description": "Charts",
   "main": "index.js",
   "scripts": {
