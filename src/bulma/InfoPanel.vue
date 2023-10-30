@@ -93,8 +93,8 @@ export default {
             return 10 ** this.precision;
         },
         sum() {
-            return this.ready && this.dataset.data
-                .reduce((sum, value) => (sum += this.multiplier * value), 0)
+            return this.ready && Math.round(this.dataset.data
+                .reduce((sum, value) => (sum += this.multiplier * value), 0))
                 / this.multiplier;
         },
         progress() {
