@@ -1,26 +1,25 @@
 <template>
-    <div class="box info-box is-paddingless stats"
+    <div class="box info-box p-0 stats"
         :style="border">
         <div class="level is-mobile">
             <div class="level-left">
                 <div class="level-item">
-                    <p class="subtitle is-5 p-2">
+                    <p class="p-2">
                         {{ dataset.label }}
                     </p>
                 </div>
             </div>
-            <div class="level-right is-clickable"
-                :class="{ 'has-background-light': !svg }"
+            <div class="level-right info-box__summary is-clickable"
                 @mouseover="svg = false"
                 @mouseleave="svg = true"
                 v-click-outside="() => svg = true"
                 v-if="total !== null">
                 <div class="level-item">
                     <progress-circle :progress="progress"
-                        :width="75"
+                        :width="65"
                         :progress-stroke="dataset.borderColor"
                         v-if="svg"/>
-                    <p class="title is-5 p-3"
+                    <p class="p-3"
                         v-else>
                         <span v-if="shortNumbers">
                             {{ shortNumber(sum) }} / {{ shortNumber(total) }}
@@ -31,7 +30,7 @@
                     </p>
                 </div>
             </div>
-            <div class="level-right"
+            <div class="level-right info-box__summary"
                 v-else>
                 <div class="level-item">
                     <p class="title is-5 p-3">
@@ -118,18 +117,26 @@ export default {
 </script>
 
 <style lang="scss">
-    .info-box.stats {
-        height: 75px;
+    .box.info-box.stats {
+        height: 60px;
+        background-color: var(--enso-surface);
+        border: 1px solid var(--enso-surface-border);
 
         .level {
             height: 100%;
             border-top-right-radius: inherit;
             border-bottom-right-radius: inherit;
+
             .level-right {
                 height: 100%;
                 border-top-right-radius: inherit;
                 border-bottom-right-radius: inherit;
             }
+        }
+
+        .info-box__summary {
+            background-color: color-mix(in srgb, var(--bulma-card-header-background-color) 72%, var(--enso-surface));
+            border-left: 1px solid var(--enso-surface-border);
         }
     }
 </style>

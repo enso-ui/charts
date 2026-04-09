@@ -4,7 +4,7 @@
         :collapsed="collapsed"
         :loading="loading"
         v-if="config">
-        <card-header class="has-background-light">
+        <card-header>
             <template #title>
                 <span class="icon is-small mr-1">
                     <fa :icon="icon"/>
@@ -16,7 +16,7 @@
                 <card-control>
                     <span class="icon is-small download"
                         @click="download">
-                        <fa icon="download"/>
+                        <fa :icon="faDownload"/>
                     </span>
                 </card-control>
                 <card-refresh @refresh="fetch"/>
@@ -35,9 +35,7 @@
 </template>
 
 <script>
-import { saveAs } from 'file-saver';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faChartBar, faChartPie, faChartLine, faChartArea, faCircleNotch, faCircle, faDownload,
 } from '@fortawesome/free-solid-svg-icons';
@@ -46,10 +44,6 @@ import {
 } from '@enso-ui/card/bulma';
 
 import Chart from '../components/Chart.vue';
-
-library.add(
-    faChartBar, faChartPie, faChartLine, faChartArea, faCircleNotch, faCircle, faDownload,
-);
 
 const icons = {
     bar: faChartBar,
@@ -108,6 +102,7 @@ export default {
     emits: ['fetching', 'fetched'],
 
     data: () => ({
+        faDownload,
         loading: false,
         config: null,
         ongoingRequest: null,
@@ -190,7 +185,20 @@ export default {
         },
         download() {
             this.$refs.chart.$el
-                .toBlob(blob => saveAs(blob, `${this.config.title}.png`));
+                .toBlob(blob => {
+                    if (!blob) {
+                        return;
+                    }
+
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `${this.config.title}.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    URL.revokeObjectURL(url);
+                });
         },
     },
 };
