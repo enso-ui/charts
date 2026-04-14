@@ -9,7 +9,7 @@
                     </p>
                 </div>
             </div>
-            <div class="level-right info-box__summary is-clickable"
+            <div class="level-right is-clickable"
                 @mouseover="svg = false"
                 @mouseleave="svg = true"
                 v-click-outside="() => svg = true"
@@ -30,7 +30,7 @@
                     </p>
                 </div>
             </div>
-            <div class="level-right info-box__summary"
+            <div class="level-right"
                 v-else>
                 <div class="level-item">
                     <p class="title is-5 p-3">
@@ -132,11 +132,6 @@ export default {
                 border-top-right-radius: inherit;
                 border-bottom-right-radius: inherit;
             }
-        }
-
-        .info-box__summary {
-            background-color: color-mix(in srgb, var(--bulma-card-header-background-color) 72%, var(--enso-surface));
-            border-left: 1px solid var(--enso-surface-border);
         }
     }
 </style>
