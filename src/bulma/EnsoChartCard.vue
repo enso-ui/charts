@@ -1,6 +1,5 @@
 <template>
-    <chart-card
-        :i18n="i18n"
+    <chart-card :i18n="i18n"
         :error-handler="errorHandler"
         @fetched="ready = true"
         ref="chart">
