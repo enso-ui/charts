@@ -111,8 +111,8 @@ export default {
             required: true,
         },
         aspectRatio: {
-            type: [Number, String],
-            default: '4',
+            type: Number,
+            default: 4,
         },
         skeletonMinVisible: {
             type: Number,
