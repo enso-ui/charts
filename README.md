@@ -86,6 +86,12 @@ Chart card variant wired to injected Enso `i18n` and `errorHandler` helpers.
 
 Import: `@enso-ui/charts/src/bulma/EnsoChartCard.vue`
 
+## Companion Backend Package
+
+- [`laravel-enso/charts`](https://docs.laravel-enso.com/backend/charts.html) [↗](https://github.com/laravel-enso/charts)
+
+The backend companion usually provides the HTTP endpoints and chart payloads consumed by `ChartCard` and `EnsoChartCard`.
+
 ## Depends On
 
 - [`@enso-ui/card`](https://docs.laravel-enso.com/frontend/card.html) [↗](https://github.com/enso-ui/card)
