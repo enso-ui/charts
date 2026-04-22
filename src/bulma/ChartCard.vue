@@ -56,6 +56,7 @@ import {
 import { Skeleton } from '@enso-ui/loader/bulma';
 
 import Chart from '../components/Chart.vue';
+import { resetSkeletonState } from '../utils/loadingState.mjs';
 
 const icons = {
     bar: faChartBar,
@@ -196,10 +197,7 @@ export default {
 
     methods: {
         fetch() {
-            if (this.contentReady) {
-                clearTimeout(this.contentTimer);
-                this.contentTimer = null;
-            }
+            resetSkeletonState(this);
 
             this.$emit('fetching');
             this.loading = true;
