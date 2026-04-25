@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/charts",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "description": "Chart.js wrappers and chart card presenters for Enso UI.",
   "main": "index.js",
   "repository": {
