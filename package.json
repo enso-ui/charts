@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/charts",
-  "version": "5.0.6",
+  "version": "5.0.7",
   "description": "Chart.js wrappers and chart card presenters for Enso UI.",
   "main": "index.js",
   "repository": {
@@ -27,7 +27,7 @@
     "chartjs-plugin-datalabels": "^2.0.0"
   },
   "peerDependencies": {
-    "@enso-ui/card": "^4.0.0",
+    "@enso-ui/card": "^4.0.8",
     "@enso-ui/directives": "^3.1.0",
     "@enso-ui/mixins": "^5.1.0",
     "@enso-ui/progress-circle": "^3.1.0",
@@ -35,7 +35,7 @@
     "vue": "^3.5.0"
   },
   "devDependencies": {
-    "@enso-ui/card": "^4.0.0",
+    "@enso-ui/card": "^4.0.8",
     "@enso-ui/directives": "^3.1.0",
     "@enso-ui/mixins": "^5.1.0",
     "@enso-ui/progress-circle": "^3.1.0",

@@ -2,7 +2,7 @@
     <card :class="$attrs.class"
         collapsible
         :collapsed="collapsed"
-        :overlay="showOverlay">
+        :loading="showOverlay">
         <card-header>
             <template #title>
                 <skeleton icon
