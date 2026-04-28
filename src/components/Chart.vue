@@ -1,12 +1,53 @@
 <script>
 import { h } from 'vue';
-import { Chart, registerables } from 'chart.js';
+import {
+    ArcElement,
+    BarController,
+    BarElement,
+    BubbleController,
+    CategoryScale,
+    Chart,
+    DoughnutController,
+    Filler,
+    Legend,
+    LineController,
+    LineElement,
+    LinearScale,
+    PieController,
+    PointElement,
+    PolarAreaController,
+    RadarController,
+    RadialLinearScale,
+    Title,
+    Tooltip,
+} from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import shortNumber from '../formatters/shortNumber';
 import defaultOptions from './options';
 
-Chart.register(...registerables, ChartDataLabels, annotationPlugin);
+Chart.register(
+    BarController,
+    BubbleController,
+    DoughnutController,
+    LineController,
+    PieController,
+    PolarAreaController,
+    RadarController,
+    ArcElement,
+    BarElement,
+    LineElement,
+    PointElement,
+    CategoryScale,
+    LinearScale,
+    RadialLinearScale,
+    Filler,
+    Legend,
+    Title,
+    Tooltip,
+    ChartDataLabels,
+    annotationPlugin,
+);
 
 const types = [
     'line', 'bar', 'horizontalBar', 'radar', 'polarArea', 'pie', 'doughnut', 'bubble',
