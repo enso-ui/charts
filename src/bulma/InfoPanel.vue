@@ -33,7 +33,7 @@
             <div class="level-right"
                 v-else>
                 <div class="level-item">
-                    <p class="title is-5 p-3">
+                    <p class="p-2">
                         <span v-if="shortNumbers">
                             {{ shortNumber(sum) }}
                         </span>
