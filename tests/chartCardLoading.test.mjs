@@ -9,3 +9,8 @@ test('ChartCard keeps rendered content visible while refetching', () => {
     assert.match(source, /showOverlay\(\)\s*\{[\s\S]*this\.loading && this\.contentReady && !!this\.config/);
     assert.match(source, /fetch\(\)\s*\{[\s\S]*this\.\$emit\('fetching'\);[\s\S]*this\.loading = true;/);
 });
+
+test('ChartCard relies on CardHeader for the collapse control', () => {
+    assert.doesNotMatch(source, /<card-collapse\s*\/>/);
+    assert.doesNotMatch(source, /\bCardCollapse\b/);
+});
