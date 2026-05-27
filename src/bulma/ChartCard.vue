@@ -25,7 +25,6 @@
                 </card-control>
                 <card-refresh :loading="showOverlay"
                     @refresh="fetch"/>
-                <card-collapse/>
             </template>
         </card-header>
         <card-content class="p-2">
@@ -51,7 +50,7 @@ import {
     faChartBar, faChartPie, faChartLine, faChartArea, faCircleNotch, faCircle, faDownload,
 } from '@fortawesome/free-solid-svg-icons';
 import {
-    Card, CardHeader, CardContent, CardControl, CardRefresh, CardCollapse,
+    Card, CardHeader, CardContent, CardControl, CardRefresh,
 } from '@enso-ui/card/bulma';
 import { Skeleton } from '@enso-ui/loader/bulma';
 
@@ -76,7 +75,6 @@ export default {
         Card,
         CardHeader,
         CardRefresh,
-        CardCollapse,
         CardControl,
         Chart,
         CardContent,
