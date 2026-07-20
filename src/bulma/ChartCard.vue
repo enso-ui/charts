@@ -235,7 +235,7 @@ export default {
         },
         download() {
             this.$refs.chart.$el.toBlob(blob => {
-                if (!blob) {
+                if (blob) {
                     const url = URL.createObjectURL(blob);
                     const link = document.createElement('a');
                     link.href = url;
